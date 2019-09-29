@@ -118,7 +118,7 @@
                     </Image>
                     <Image
                         Source="instagram_logo"
-                        WidthRequest="100">
+                        WidthRequest="70">
                     </Image>
                 </StackLayout>
             </StackLayout>
