@@ -23,7 +23,7 @@ namespace Lands.Services
                 };
             }
 
-            var isReachable = await CrossConnectivity.Current.IsReachable("google.com");
+            var isReachable = await CrossConnectivity.Current.IsReachable("www.google.com");
 
             if (!isReachable)
             {

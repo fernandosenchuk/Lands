@@ -69,43 +69,43 @@ namespace Lands.ViewModels
 
         private async void Login()
         {
-            if (string.IsNullOrEmpty(this.Email))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email.",
-                    "Accept");
+            //if (string.IsNullOrEmpty(this.Email))
+            //{
+            //    await Application.Current.MainPage.DisplayAlert(
+            //        "Error",
+            //        "You must enter an email.",
+            //        "Accept");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (string.IsNullOrEmpty(this.Password))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password.",
-                    "Accept");
+            //if (string.IsNullOrEmpty(this.Password))
+            //{
+            //    await Application.Current.MainPage.DisplayAlert(
+            //        "Error",
+            //        "You must enter a password.",
+            //        "Accept");
 
-                return;
-            }
+            //    return;
+            //}
 
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            if (this.Email != "fernando.senchuk@gmail.com" || this.Password != "1234")
-            {
-                this.IsRunning = false;
-                this.IsEnabled = true;
+            //if (this.Email != "fernando.senchuk@gmail.com" || this.Password != "1234")
+            //{
+            //    this.IsRunning = false;
+            //    this.IsEnabled = true;
 
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Email or password incorrect.",
-                    "Accept");
+            //    await Application.Current.MainPage.DisplayAlert(
+            //        "Error",
+            //        "Email or password incorrect.",
+            //        "Accept");
 
-                this.Password = string.Empty;
+            //    this.Password = string.Empty;
 
-                return;
-            }
+            //    return;
+            //}
 
             this.IsRunning = false;
             this.IsEnabled = true;

@@ -17,7 +17,7 @@
                     Text="Lands">
                 </Label>
                 <Image
-                    WidthRequest="200"
+                    WidthRequest="150"
                     Source="onu">
                 </Image>
                 <Grid
