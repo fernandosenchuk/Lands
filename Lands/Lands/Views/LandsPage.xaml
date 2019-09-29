@@ -8,10 +8,11 @@
         <StackLayout
             BindingContext="{Binding Lands}"
             Padding="5">
-            <Label 
-                FontSize="Large"
-                Text="Lands Page">
-            </Label>
+            <ListView
+
+                ItemsSource="{Binding Lands}">
+                
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
