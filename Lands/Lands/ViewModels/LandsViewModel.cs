@@ -24,8 +24,6 @@ namespace Lands.ViewModels
         private bool isRefreshing;
         private string filter;
 
-        private List<Land> landsList;
-
         #endregion
 
         #region Properties
@@ -118,7 +116,7 @@ namespace Lands.ViewModels
                 return;
             }
 
-            this.landsList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
 
             this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
 
@@ -127,7 +125,7 @@ namespace Lands.ViewModels
 
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return landsList.Select(x => new LandItemViewModel()
+            return MainViewModel.GetInstance().LandsList.Select(x => new LandItemViewModel()
             {
                 Alpha2Code = x.Alpha2Code,
                 Alpha3Code = x.Alpha3Code,
@@ -165,8 +163,7 @@ namespace Lands.ViewModels
             else
             {
                 this.Lands = new ObservableCollection<LandItemViewModel>(
-                    this.ToLandItemViewModel().Where(x =>
-                                                        !string.IsNullOrEmpty(x.Name)
+                    this.ToLandItemViewModel().Where(x => !string.IsNullOrEmpty(x.Name)
                                                         && !string.IsNullOrEmpty(x.Capital)
                                                         && (x.Name.ToLower().Contains(this.Filter.ToLower())
                                                             || x.Capital.ToLower().Contains(this.Filter.ToLower()))
