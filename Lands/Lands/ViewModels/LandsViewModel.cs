@@ -4,10 +4,9 @@ using Lands.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
 
 namespace Lands.ViewModels
 {
@@ -21,7 +20,7 @@ namespace Lands.ViewModels
 
         #region Attributes
 
-        private ObservableCollection<Land> lands;
+        private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
 
@@ -31,7 +30,7 @@ namespace Lands.ViewModels
 
         #region Properties
 
-        public ObservableCollection<Land> Lands
+        public ObservableCollection<LandItemViewModel> Lands
         {
             get { return lands; }
             set { SetValue(ref lands, value); }
@@ -121,26 +120,57 @@ namespace Lands.ViewModels
 
             this.landsList = (List<Land>)response.Result;
 
-            this.Lands = new ObservableCollection<Land>(this.landsList);
+            this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
 
             this.IsRefreshing = false;
+        }
+
+        private IEnumerable<LandItemViewModel> ToLandItemViewModel()
+        {
+            return landsList.Select(x => new LandItemViewModel()
+            {
+                Alpha2Code = x.Alpha2Code,
+                Alpha3Code = x.Alpha3Code,
+                AltSpellings = x.AltSpellings,
+                Area = x.Area,
+                Borders = x.Borders,
+                CallingCodes = x.CallingCodes,
+                Capital = x.Capital,
+                Cioc = x.Cioc,
+                Currencies = x.Currencies,
+                Demonym = x.Demonym,
+                Flag = x.Flag,
+                Gini = x.Gini,
+                Languages = x.Languages,
+                Latlng = x.Latlng,
+                Name = x.Name,
+                NativeName = x.NativeName,
+                NumericCode = x.NumericCode,
+                Population = x.Population,
+                Region = x.Region,
+                RegionalBlocs = x.RegionalBlocs,
+                Subregion = x.Subregion,
+                Timezones = x.Timezones,
+                TopLevelDomain = x.TopLevelDomain,
+                Translations = x.Translations
+            });
         }
 
         private void Search()
         {
             if (string.IsNullOrEmpty(this.Filter))
             {
-                this.Lands = new ObservableCollection<Land>(this.landsList);
+                this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
             }
             else
             {
-                this.Lands = new ObservableCollection<Land>(
-                    this.landsList.Where(x =>
-                        !string.IsNullOrEmpty(x.Name)
-                        && !string.IsNullOrEmpty(x.Capital)
-                        && (x.Name.ToLower().Contains(this.Filter.ToLower()) 
-                            || x.Capital.ToLower().Contains(this.Filter.ToLower()))
-                        ));
+                this.Lands = new ObservableCollection<LandItemViewModel>(
+                    this.ToLandItemViewModel().Where(x =>
+                                                        !string.IsNullOrEmpty(x.Name)
+                                                        && !string.IsNullOrEmpty(x.Capital)
+                                                        && (x.Name.ToLower().Contains(this.Filter.ToLower())
+                                                            || x.Capital.ToLower().Contains(this.Filter.ToLower()))
+                                                        ));
             }
         }
 
