@@ -23,10 +23,10 @@ namespace Lands.Models
         public string Italian { get; set; }
 
         [JsonProperty(PropertyName = "br")]
-        public string Brasilian { get; set; }
+        public string Brazilian { get; set; }
 
         [JsonProperty(PropertyName = "pt")]
-        public string Portugues { get; set; }
+        public string Portuges { get; set; }
 
         [JsonProperty(PropertyName = "nl")]
         public string Dutch { get; set; }
@@ -35,6 +35,6 @@ namespace Lands.Models
         public string Croatian { get; set; }
 
         [JsonProperty(PropertyName = "fa")]
-        public string Danish { get; set; }
+        public string Persiane { get; set; }
     }
 }
