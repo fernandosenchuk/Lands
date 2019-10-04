@@ -23,16 +23,16 @@ namespace Lands.Services
                 };
             }
 
-            var isReachable = await CrossConnectivity.Current.IsReachable("www.google.com");
+            //var isReachable = await CrossConnectivity.Current.IsReachable("www.google.com");
 
-            if (!isReachable)
-            {
-                return new Response()
-                {
-                    IsSuccess = false,
-                    Message = "Check your internet connection."
-                };
-            }
+            //if (!isReachable)
+            //{
+            //    return new Response()
+            //    {
+            //        IsSuccess = false,
+            //        Message = "Check your internet connection."
+            //    };
+            //}
 
             return new Response()
             {
