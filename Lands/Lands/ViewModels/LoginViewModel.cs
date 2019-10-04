@@ -58,8 +58,8 @@ namespace Lands.ViewModels
 
             this.apiService = new ApiService();
 
-            //this.Email = "fernando.senchuk@gmail.com";
-            //this.Password = "1234";
+            this.Email = "fernando.senchuk@gmail.com";
+            this.Password = "123456";
 
             //http://restcountries.eu/rest/v2/all
         }
@@ -121,7 +121,7 @@ namespace Lands.ViewModels
             if (token == null)
             {
                 this.IsRunning = false;
-                this.IsEnabled = false;
+                this.IsEnabled = true;
 
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
