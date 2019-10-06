@@ -167,7 +167,7 @@ namespace Lands.ViewModels
             mainViewModel.Lands = new LandsViewModel();
             mainViewModel.Token = token;
 
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            App.Current.MainPage = new MasterPage();
 
             this.IsRunning = false;
             this.IsEnabled = true;

@@ -1,5 +1,8 @@
 ﻿using Lands.Models;
+using Lands.Resources;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Lands.ViewModels
 {
@@ -9,7 +12,7 @@ namespace Lands.ViewModels
 
         public List<Land> LandsList { get; set; }
         public TokenResponse Token { get; set; }
-
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         #endregion
 
         #region ViewModels
@@ -27,6 +30,8 @@ namespace Lands.ViewModels
             instance = this;
 
             this.Login = new LoginViewModel();
+
+            this.LoadMenu();
         }
 
         #endregion
@@ -41,6 +46,36 @@ namespace Lands.ViewModels
                 return new MainViewModel();
 
             return instance;
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void LoadMenu()
+        {
+            this.Menus = new ObservableCollection<MenuItemViewModel>();
+
+            this.Menus.Add(new MenuItemViewModel()
+            {
+                Icon = "ic_settings.png",
+                PageName = "MyProfilePage",
+                Title = Resource.MyProfile
+            });
+
+            this.Menus.Add(new MenuItemViewModel()
+            {
+                Icon = "ic_insert_chart.png",
+                PageName = "StatisticsPage",
+                Title = Resource.Statistics
+            });
+
+            this.Menus.Add(new MenuItemViewModel()
+            {
+                Icon = "ic_exit_to_app.png",
+                PageName = "LoginPage",
+                Title = Resource.LogOut
+            });
         }
 
         #endregion
