@@ -41,6 +41,11 @@ namespace Lands.Helpers
             get { return Resource.Rememberme; }
         }
 
+        public static string Menu
+        {
+            get { return Resource.Menu; }
+        }
+
         //public static string PasswordValidation
         //{
         //    get { return Resource.PasswordValidation; }

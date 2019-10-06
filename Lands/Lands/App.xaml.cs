@@ -1,19 +1,30 @@
-﻿using System;
+﻿using Lands.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Lands.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Lands
 {
     public partial class App : Application
     {
+        #region Properties
+
+        public static NavigationPage Navigator { get; internal set; }
+
+        #endregion
+
+        #region Constructor
+
         public App()
         {
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
         }
+
+        #endregion
+
+        #region Methods
 
         protected override void OnStart()
         {
@@ -29,5 +40,7 @@ namespace Lands
         {
             // Handle when your app resumes
         }
+
+        #endregion
     }
 }
