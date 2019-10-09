@@ -1,4 +1,6 @@
-﻿using Lands.Views;
+﻿using Lands.Helpers;
+using Lands.ViewModels;
+using Lands.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +21,23 @@ namespace Lands
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+
+                mainViewModel.Token = Settings.Token;
+                mainViewModel.TokenType = Settings.TokenType;
+
+                mainViewModel.Lands = new LandsViewModel();
+
+                Application.Current.MainPage = new MasterPage();
+
+                //MainPage = new MasterPage();
+            }
         }
 
         #endregion

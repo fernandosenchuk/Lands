@@ -162,12 +162,22 @@ namespace Lands.ViewModels
             //    return;
             //}
 
+
             var mainViewModel = MainViewModel.GetInstance();
 
             mainViewModel.Lands = new LandsViewModel();
-            mainViewModel.Token = token;
 
-            App.Current.MainPage = new MasterPage();
+            if (this.IsRemembered)
+            {
+                mainViewModel.Token = token.AccessToken;
+                mainViewModel.TokenType = token.TokenType;
+
+                Settings.Token = token.AccessToken;
+                Settings.TokenType = token.TokenType;
+            }
+
+            Application.Current.MainPage = new MasterPage();
+            //App.Current.MainPage = new MasterPage();
             //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 
             this.IsRunning = false;
