@@ -60,7 +60,10 @@ namespace Lands.ViewModels
 
             this.apiService = new ApiService();
 
-            this.Email = "fernando.senchuk@gmail.com";
+            //this.Email = "fernando.senchuk@gmail.com";
+            //this.Password = "123456";
+
+            this.Email = "usuario1@gmail.com";
             this.Password = "123456";
 
             //http://restcountries.eu/rest/v2/all
@@ -126,7 +129,13 @@ namespace Lands.ViewModels
                 return;
             }
 
-            var token = await this.apiService.GetToken("https://landsapifds.azurewebsites.net", this.Email, this.Password);
+            //var token = await this.apiService.GetToken("https://landsapifds.azurewebsites.net", this.Email, this.Password);
+
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            var token = await this.apiService.GetToken(
+                apiSecurity,
+                this.Email,
+                this.Password);
 
             if (token == null)
             {

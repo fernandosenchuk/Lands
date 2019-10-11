@@ -13,7 +13,7 @@
             <StackLayout
                 Padding="5">
                 <controls:CircleImage 
-                    Aspect="AspectFill"
+                    Aspect="AspectFit"
                     HeightRequest="100"
                     Source="{Binding ImageSource}">
                     <controls:CircleImage.GestureRecognizers>

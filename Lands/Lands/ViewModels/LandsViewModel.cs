@@ -103,7 +103,13 @@ namespace Lands.ViewModels
             //    return;
             //}
 
-            var response = await this.apiService.GetList<Land>("http://restcountries.eu", "/rest", "/v2/all");
+            var apiLands = Application.Current.Resources["APILands"].ToString();
+            var response = await this.apiService.GetList<Land>(
+                apiLands,
+                "/rest",
+                "/v2/all");
+
+            //var response = await this.apiService.GetList<Land>("http://restcountries.eu", "/rest", "/v2/all");
 
             if (!response.IsSuccess)
             {
