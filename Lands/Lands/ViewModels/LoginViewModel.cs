@@ -2,6 +2,7 @@
 using Lands.Helpers;
 using Lands.Services;
 using Lands.Views;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -74,6 +75,14 @@ namespace Lands.ViewModels
             get
             {
                 return new RelayCommand(Login);
+            }
+        }
+
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
             }
         }
 
@@ -185,6 +194,14 @@ namespace Lands.ViewModels
 
             this.Email = string.Empty;
             this.Password = string.Empty;
+        }
+
+
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
 
         #endregion

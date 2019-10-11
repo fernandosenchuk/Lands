@@ -61,5 +61,11 @@ namespace Lands.Domain
                 return string.Format("{0} {1}", this.FirstName, this.LastName);
             }
         }
+
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
+
+        [NotMapped]
+        public string Password { get; set; }
     }
 }

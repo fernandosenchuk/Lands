@@ -61,6 +61,82 @@ namespace Lands.Helpers
             get { return Resource.LogOut; }
         }
 
+        public static string Register
+        {
+            get { return Resource.Register; }
+        }
+
+        public static string FirstNameValidation
+        {
+            get { return Resource.FirstNameValidation; }
+        }
+
+        public static string LastNameValidation
+        {
+            get { return Resource.LastNameValidation; }
+        }
+
+        public static string EmailValidation2
+        {
+            get { return Resource.EmailValidation2; }
+        }
+
+        public static string PhoneValidation
+        {
+            get { return Resource.PhoneValidation; }
+        }
+
+
+        public static string PasswordValidation
+        {
+            get { return Resource.PasswordValidation; }
+        }
+
+        public static string PasswordValidation2
+        {
+            get { return Resource.PasswordValidation2; }
+        }
+
+        public static string ConfirmValidation
+        {
+            get { return Resource.ConfirmValidation; }
+        }
+
+        public static string ConfirmValidation2
+        {
+            get { return Resource.ConfirmValidation2; }
+        }
+
+        public static string ConfirmLabel
+        {
+            get { return Resource.ConfirmLabel; }
+        }
+
+        public static string UserRegisteredMessage
+        {
+            get { return Resource.UserRegisteredMessage; }
+        }
+
+        public static string SourceImageQuestion
+        {
+            get { return Resource.SourceImageQuestion; }
+        }
+
+        public static string Cancel
+        {
+            get { return Resource.Cancel; }
+        }
+
+        public static string FromGallery
+        {
+            get { return Resource.FromGallery; }
+        }
+
+        public static string FromCamera
+        {
+            get { return Resource.FromCamera; }
+        }
+
         //public static string PasswordValidation
         //{
         //    get { return Resource.PasswordValidation; }
