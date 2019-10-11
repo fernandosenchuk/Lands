@@ -2,6 +2,7 @@
 using Lands.Helpers;
 using Lands.Views;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Lands.ViewModels
 {
@@ -31,7 +32,7 @@ namespace Lands.ViewModels
 
         private void Navigate()
         {
-            if(this.PageName == "LoginPage")
+            if (this.PageName == "LoginPage")
             {
                 Settings.Token = string.Empty;
                 Settings.TokenType = string.Empty;
@@ -41,7 +42,7 @@ namespace Lands.ViewModels
                 mainViewModel.Token = string.Empty;
                 mainViewModel.TokenType = string.Empty;
 
-                App.Current.MainPage = new LoginPage();
+                App.Current.MainPage = new NavigationPage(new LoginPage());
             }
         }
 
