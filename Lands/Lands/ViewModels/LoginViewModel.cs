@@ -129,8 +129,6 @@ namespace Lands.ViewModels
                 return;
             }
 
-            //var token = await this.apiService.GetToken("https://landsapifds.azurewebsites.net", this.Email, this.Password);
-
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var token = await this.apiService.GetToken(
                 apiSecurity,
