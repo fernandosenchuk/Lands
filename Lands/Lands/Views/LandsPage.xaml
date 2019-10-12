@@ -27,7 +27,7 @@
                 BackgroundColor="Silver"
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding Isrefreshing, Mode=TwoWay}"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 ItemsSource="{Binding Lands}"
                 RefreshCommand="{Binding RefreshCommand}"
                 SeparatorVisibility="None">
