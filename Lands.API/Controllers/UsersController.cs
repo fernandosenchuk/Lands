@@ -1,5 +1,6 @@
 ﻿using Lands.API.Helpers;
 using Lands.Domain;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -12,6 +13,7 @@ using System.Web.Http.Description;
 
 namespace Lands.API.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         private DataContext db = new DataContext();
@@ -33,6 +35,31 @@ namespace Lands.API.Controllers
             }
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("GetUserByEmail")]
+        public async Task<IHttpActionResult> GetUserByEmail(JObject form)
+        {
+            try
+            {
+                dynamic jsonObject = form;
+
+                string email = jsonObject.Email.Value;
+
+                User user = await db.Users.Where(x => x.Email != null && x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // PUT: api/Users/5
