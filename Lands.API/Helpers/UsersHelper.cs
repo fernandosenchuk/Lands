@@ -1,6 +1,7 @@
-﻿namespace Lands.Backend.Helpers
+﻿namespace Lands.API.Helpers
 {
-    using Lands.Backend.Models;
+    using Lands.API.Models;
+    using Lands.Domain;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -10,7 +11,7 @@
     public class UsersHelper : IDisposable
     {
         private static ApplicationDbContext userContext = new ApplicationDbContext();
-        private static LocalDataContext db = new LocalDataContext();
+        private static DataContext db = new DataContext();
 
         public static bool DeleteUser(string userName, string roleName)
         {

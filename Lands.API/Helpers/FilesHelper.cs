@@ -1,4 +1,4 @@
-﻿namespace Lands.Backend.Helpers
+﻿namespace Lands.API.Helpers
 {
     using System.IO;
     using System.Web;
