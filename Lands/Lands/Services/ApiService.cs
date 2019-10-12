@@ -313,6 +313,37 @@ namespace Lands.Services
             }
         }
 
+        public async Task<User> GetUserByEmail(string urlBase, string servicePrefix, string controller, string email)
+        {
+            try
+            {
+                UserRequest model = new UserRequest() { Email = email };
+
+                var request = JsonConvert.SerializeObject(model);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+
+                client.BaseAddress = new Uri(urlBase);
+
+                var url = string.Format("{0}{1}", servicePrefix, controller);
+                var response = await client.PostAsync(url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<User>(result);
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public async Task<Response> Put<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model)
         {
             try

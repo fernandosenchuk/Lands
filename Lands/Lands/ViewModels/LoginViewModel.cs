@@ -163,31 +163,21 @@ namespace Lands.ViewModels
                 return;
             }
 
-            //if (this.Email != "fernando.senchuk@gmail.com" || this.Password != "1234")
-            //{
-            //    this.IsRunning = false;
-            //    this.IsEnabled = true;
-
-            //    await Application.Current.MainPage.DisplayAlert(
-            //        "Error",
-            //        "Email or password incorrect.",
-            //        "Accept");
-
-            //    this.Password = string.Empty;
-
-            //    return;
-            //}
-
+            var user = await apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                this.Email);
 
             var mainViewModel = MainViewModel.GetInstance();
 
             mainViewModel.Lands = new LandsViewModel();
+            mainViewModel.Token = token.AccessToken;
+            mainViewModel.TokenType = token.TokenType;
+            mainViewModel.User = user;
 
             if (this.IsRemembered)
             {
-                mainViewModel.Token = token.AccessToken;
-                mainViewModel.TokenType = token.TokenType;
-
                 Settings.Token = token.AccessToken;
                 Settings.TokenType = token.TokenType;
             }
@@ -202,7 +192,6 @@ namespace Lands.ViewModels
             this.Email = string.Empty;
             this.Password = string.Empty;
         }
-
 
         private async void Register()
         {
