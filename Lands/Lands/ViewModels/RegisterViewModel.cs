@@ -16,7 +16,8 @@
         #endregion
 
         #region Attributes
-        private bool isRunning;
+        private bool isRunningRegister;
+        private bool isRunningPhoto;
         private bool isEnabled;
         private ImageSource imageSource;
         private MediaFile file;
@@ -35,10 +36,16 @@
             set { SetValue(ref this.isEnabled, value); }
         }
 
-        public bool IsRunning
+        public bool IsRunningRegister
         {
-            get { return this.isRunning; }
-            set { SetValue(ref this.isRunning, value); }
+            get { return this.isRunningRegister; }
+            set { SetValue(ref this.isRunningRegister, value); }
+        }
+
+        public bool IsRunningPhoto
+        {
+            get { return this.isRunningPhoto; }
+            set { SetValue(ref this.isRunningPhoto, value); }
         }
 
         public string FirstName
@@ -183,13 +190,13 @@
                 return;
             }
 
-            this.IsRunning = true;
+            this.IsRunningRegister = true;
             this.IsEnabled = false;
 
             var checkConnetion = await this.apiService.CheckConnection();
             if (!checkConnetion.IsSuccess)
             {
-                this.IsRunning = false;
+                this.IsRunningRegister = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -224,7 +231,7 @@
 
             if (!response.IsSuccess)
             {
-                this.IsRunning = false;
+                this.IsRunningRegister = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -233,7 +240,7 @@
                 return;
             }
 
-            this.IsRunning = false;
+            this.IsRunningRegister = false;
             this.IsEnabled = true;
 
             await Application.Current.MainPage.DisplayAlert(
@@ -294,11 +301,15 @@
 
             if (this.file != null)
             {
+                this.IsRunningPhoto = true;
+
                 this.ImageSource = ImageSource.FromStream(() =>
                 {
                     var stream = file.GetStream();
                     return stream;
                 });
+
+                this.IsRunningPhoto = false;
             }
         }
         #endregion

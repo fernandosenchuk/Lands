@@ -28,111 +28,153 @@
                 </Label>
                 <ActivityIndicator
                     HeightRequest="20"
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                    IsVisible="False"
+                    IsRunning="{Binding IsRunningPhoto, Mode=TwoWay}">
                 </ActivityIndicator>
-                <Grid>
+                <Grid
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="0" 
+                        HeightRequest="30"
                         Text="First Name" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Grid.Column="1" 
                         Grid.Row="0" 
                         Placeholder="Enter the first name..." 
                         TextColor="Black" 
-                        Text="{Binding FirstName, Mode=TwoWay}">
+                        Text="{Binding FirstName, Mode=TwoWay}" 
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="1" 
+                        HeightRequest="30"
                         Text="Last Name" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Grid.Column="1" 
                         Grid.Row="1" 
                         Placeholder="Enter the last name..." 
                         TextColor="Black" 
-                        Text="{Binding LastName, Mode=TwoWay}">
+                        Text="{Binding LastName, Mode=TwoWay}" 
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="2" 
+                        HeightRequest="30"
                         Text="E-Mail" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Keyboard="Email" 
                         Grid.Column="1" 
                         Grid.Row="2" 
                         Placeholder="Enter your email..." 
                         TextColor="Black" 
-                        Text="{Binding Email, Mode=TwoWay}">
+                        Text="{Binding Email, Mode=TwoWay}" 
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="3" 
+                        HeightRequest="30"
                         Text="Phone" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Grid.Column="1" 
                         Grid.Row="3" 
                         Keyboard="Telephone" 
                         Placeholder="Enter the phone..." 
                         TextColor="Black" 
-                        Text="{Binding Telephone, Mode=TwoWay}">
+                        Text="{Binding Telephone, Mode=TwoWay}" 
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="4" 
+                        HeightRequest="30"
                         Text="Password" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Grid.Column="1" 
                         Grid.Row="4" 
                         IsPassword="true" 
                         Placeholder="Enter your password..." 
                         TextColor="Black" 
-                        Text="{Binding Password, Mode=TwoWay}">
+                        Text="{Binding Password, Mode=TwoWay}" 
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                     <Label 
+                        FontSize="Small"
                         Grid.Column="0" 
                         Grid.Row="5" 
+                        HeightRequest="30"
                         Text="Confirm" 
                         TextColor="Black" 
-                        VerticalOptions="Center">
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
                     </Label>
                     <Entry 
+                        FontSize="Small"
                         Grid.Column="1" 
                         Grid.Row="5" 
                         IsPassword="true" 
                         Placeholder="Enter the password confirm..." 
                         TextColor="Black" 
-                        Text="{Binding Confirm, Mode=TwoWay}">
+                        Text="{Binding Confirm, Mode=TwoWay}"
+                        VerticalOptions="FillAndExpand">
                     </Entry>
                 </Grid>
                 <ActivityIndicator
+                    Color="Black"
                     HeightRequest="20"
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                    IsRunning="{Binding IsRunningRegister, Mode=TwoWay}">
                 </ActivityIndicator>
                 <Button 
                     BackgroundColor="Navy" 
                     BorderRadius="23" 
                     Command="{Binding RegisterCommand}" 
-                    HeightRequest="30" 
+                    HeightRequest="43" 
                     IsEnabled="{Binding IsEnabled, Mode=TwoWay}" 
                     Margin="50,0,50,0" 
                     Text="Register" 
