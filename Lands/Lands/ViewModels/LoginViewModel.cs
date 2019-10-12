@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Lands.Helpers;
+using Lands.Models;
 using Lands.Services;
 using Lands.Views;
 using System;
@@ -13,6 +14,7 @@ namespace Lands.ViewModels
         #region Services
 
         private ApiService apiService;
+        private DataService dataService;
 
         #endregion
 
@@ -59,6 +61,7 @@ namespace Lands.ViewModels
             this.IsEnabled = true;
 
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             //this.Email = "fernando.senchuk@gmail.com";
             //this.Password = "123456";
@@ -171,15 +174,19 @@ namespace Lands.ViewModels
 
             var mainViewModel = MainViewModel.GetInstance();
 
+            UserLocal userLocal = Converter.ToUserLocal(user);
+
             mainViewModel.Lands = new LandsViewModel();
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
+            mainViewModel.UserLocal = userLocal;
 
             if (this.IsRemembered)
             {
                 Settings.Token = token.AccessToken;
                 Settings.TokenType = token.TokenType;
+
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
 
             Application.Current.MainPage = new MasterPage();

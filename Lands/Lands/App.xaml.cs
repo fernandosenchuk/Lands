@@ -1,4 +1,6 @@
 ﻿using Lands.Helpers;
+using Lands.Models;
+using Lands.Services;
 using Lands.ViewModels;
 using Lands.Views;
 using Xamarin.Forms;
@@ -27,6 +29,10 @@ namespace Lands
             }
             else
             {
+                var dataService = new DataService();
+
+                var userLocal = dataService.First<UserLocal>(false);
+
                 var mainViewModel = MainViewModel.GetInstance();
 
                 mainViewModel.Token = Settings.Token;
@@ -34,9 +40,9 @@ namespace Lands
 
                 mainViewModel.Lands = new LandsViewModel();
 
-                Application.Current.MainPage = new MasterPage();
+                mainViewModel.UserLocal = userLocal;
 
-                //MainPage = new MasterPage();
+                Application.Current.MainPage = new MasterPage();
             }
         }
 

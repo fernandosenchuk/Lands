@@ -14,7 +14,7 @@ namespace Lands.ViewModels
         public List<Land> LandsList { get; set; }
         public string Token { get; set; }
         public string TokenType { get; set; }
-        public User User { get; set; }
+        public UserLocal UserLocal { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         #endregion

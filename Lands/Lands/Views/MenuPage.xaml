@@ -15,13 +15,13 @@
             <controls:CircleImage 
                 Aspect="AspectFit"
                 HeightRequest="150"
-                Source="{Binding User.ImageFullPath}">
+                Source="{Binding UserLocal.ImageFullPath}">
             </controls:CircleImage>
             <Label
                 FontSize="Large"
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
-                Text="{Binding User.FullName, StringFormat='Hello {0}'}"
+                Text="{Binding UserLocal.FullName, StringFormat='Hello {0}'}"
                 TextColor="White">
             </Label>
             <ListView 
