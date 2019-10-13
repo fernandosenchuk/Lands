@@ -5,8 +5,10 @@
     using Lands.Helpers;
     using Lands.Models;
     using Lands.Services;
+    using Lands.Views;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
+    using System;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -189,8 +191,8 @@
                 apiSecurity,
                 "/api",
                 "/Users",
-                MainViewModel.GetInstance().TokenType,
-                MainViewModel.GetInstance().Token,
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
                 user,
                 user.UserId);
 
@@ -212,8 +214,8 @@
                 apiSecurity,
                 "/api",
                 "/Users/GetUserByEmail",
-                MainViewModel.GetInstance().TokenType,
-                MainViewModel.GetInstance().Token,
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
                 this.Email);
 
             var userLocal = Converter.ToUserLocal(userApi);
@@ -286,6 +288,21 @@
 
                 this.IsRunning = false;
             }
+        }
+
+        public ICommand ChangePasswordCommand
+        {
+            get
+            {
+                return new RelayCommand(ChangePassword);
+            }
+        }
+
+        private async void ChangePassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+
+            await App.Navigator.PushAsync(new ChangePasswordPage());
         }
 
         #endregion

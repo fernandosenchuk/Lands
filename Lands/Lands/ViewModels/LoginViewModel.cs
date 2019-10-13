@@ -178,22 +178,21 @@ namespace Lands.ViewModels
 
             UserLocal userLocal = Converter.ToUserLocal(user);
 
+            userLocal.Password = this.Password;
+
             mainViewModel.Lands = new LandsViewModel();
-            mainViewModel.Token = token.AccessToken;
-            mainViewModel.TokenType = token.TokenType;
+            mainViewModel.Token = token;
             mainViewModel.UserLocal = userLocal;
 
             if (this.IsRemembered)
-            {
-                Settings.Token = token.AccessToken;
-                Settings.TokenType = token.TokenType;
+                Settings.IsRemembered = "true";
+            else
+                Settings.IsRemembered = "false";
 
-                this.dataService.DeleteAllAndInsert(userLocal);
-            }
+            this.dataService.DeleteAllAndInsert(userLocal);
+            this.dataService.DeleteAllAndInsert(token);
 
             Application.Current.MainPage = new MasterPage();
-            //App.Current.MainPage = new MasterPage();
-            //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 
             this.IsRunning = false;
             this.IsEnabled = true;

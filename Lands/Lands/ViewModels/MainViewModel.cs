@@ -1,7 +1,5 @@
-﻿using Lands.Domain;
-using Lands.Models;
+﻿using Lands.Models;
 using Lands.Resources;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -18,8 +16,7 @@ namespace Lands.ViewModels
         #region Properties
 
         public List<Land> LandsList { get; set; }
-        public string Token { get; set; }
-        public string TokenType { get; set; }
+        public TokenResponse Token { get; set; }
 
         public UserLocal UserLocal
         {
@@ -38,6 +35,7 @@ namespace Lands.ViewModels
         public LandViewModel Land { get; set; }
         public MyProfileViewModel MyProfile { get; set; }
         public RegisterViewModel Register { get; set; }
+        public ChangePasswordViewModel ChangePassword { get; set; }
 
         #endregion
 

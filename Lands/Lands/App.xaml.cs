@@ -3,6 +3,7 @@ using Lands.Models;
 using Lands.Services;
 using Lands.ViewModels;
 using Lands.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,26 +25,32 @@ namespace Lands
         {
             InitializeComponent();
 
-            if (string.IsNullOrEmpty(Settings.Token))
-            {
-                MainPage = new NavigationPage(new LoginPage());
-            }
-            else
+            if (Settings.IsRemembered == "true")
             {
                 var dataService = new DataService();
 
                 var userLocal = dataService.First<UserLocal>(false);
+                var token = dataService.First<TokenResponse>(false);
 
-                var mainViewModel = MainViewModel.GetInstance();
+                if (token != null && token.Expires >= DateTime.Now)
+                {
 
-                mainViewModel.Token = Settings.Token;
-                mainViewModel.TokenType = Settings.TokenType;
+                    var mainViewModel = MainViewModel.GetInstance();
 
-                mainViewModel.Lands = new LandsViewModel();
+                    mainViewModel.UserLocal = userLocal;
+                    mainViewModel.Token = token;
+                    mainViewModel.Lands = new LandsViewModel();
 
-                mainViewModel.UserLocal = userLocal;
-
-                Application.Current.MainPage = new MasterPage();
+                    Application.Current.MainPage = new MasterPage();
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new LoginPage());
+                }
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
             }
         }
 

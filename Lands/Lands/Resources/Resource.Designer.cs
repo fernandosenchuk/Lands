@@ -79,6 +79,15 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password was changed successfully..
+        /// </summary>
+        public static string ChagePasswordConfirm {
+            get {
+                return ResourceManager.GetString("ChagePasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ConfirmLabel {
@@ -142,6 +151,15 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password can&apos;t be changed, please try latter..
+        /// </summary>
+        public static string ErrorChangingPassword {
+            get {
+                return ResourceManager.GetString("ErrorChangingPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter a first name..
         /// </summary>
         public static string FirstNameValidation {
@@ -201,6 +219,15 @@ namespace Lands.Resources {
         public static string MyProfile {
             get {
                 return ResourceManager.GetString("MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current password is incorrect.
+        /// </summary>
+        public static string PasswordError {
+            get {
+                return ResourceManager.GetString("PasswordError", resourceCulture);
             }
         }
         
