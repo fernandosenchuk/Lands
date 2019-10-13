@@ -171,10 +171,6 @@
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
             }
-            else
-            {
-                //????
-            }
 
             var user = new User
             {
