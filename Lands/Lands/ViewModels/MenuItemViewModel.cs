@@ -32,6 +32,8 @@ namespace Lands.ViewModels
 
         private void Navigate()
         {
+            App.Master.IsPresented = false;
+
             if (this.PageName == "LoginPage")
             {
                 Settings.Token = string.Empty;
@@ -44,6 +46,15 @@ namespace Lands.ViewModels
 
                 App.Current.MainPage = new NavigationPage(new LoginPage());
             }
+            else if(this.PageName == "MyProfilePage")
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+
+                mainViewModel.MyProfile = new MyProfileViewModel();
+
+                App.Navigator.PushAsync(new MyProfilePage());
+            }
+            
         }
 
         #endregion

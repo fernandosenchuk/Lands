@@ -30,7 +30,6 @@ namespace Lands.ViewModels
             MainViewModel.GetInstance().Land = new LandViewModel(this);
 
             await App.Navigator.PushAsync(new LandTabbedPage());
-            //await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());
         }
 
         #endregion
