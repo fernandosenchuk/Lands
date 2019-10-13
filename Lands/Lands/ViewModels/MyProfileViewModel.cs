@@ -193,8 +193,7 @@
                 "/Users",
                 MainViewModel.GetInstance().Token.TokenType,
                 MainViewModel.GetInstance().Token.AccessToken,
-                user,
-                user.UserId);
+                user);
 
             if (!response.IsSuccess)
             {

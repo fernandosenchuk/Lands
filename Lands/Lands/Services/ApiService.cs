@@ -313,7 +313,7 @@ namespace Lands.Services
             }
         }
 
-        public async Task<Response> Put<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model, int id)
+        public async Task<Response> Put<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model)
         {
             try
             {
@@ -328,7 +328,7 @@ namespace Lands.Services
                     "{0}{1}/{2}",
                     servicePrefix,
                     controller,
-                    id);
+                    model.GetHashCode());
                 var response = await client.PutAsync(url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
