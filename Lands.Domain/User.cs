@@ -43,9 +43,7 @@ namespace Lands.Domain
             get
             {
                 if (string.IsNullOrEmpty(ImagePath))
-                {
-                    return "noimage";
-                }
+                    return null;
 
                 return string.Format(
                     "http://LandsAPIFDS.azurewebsites.net/{0}",
