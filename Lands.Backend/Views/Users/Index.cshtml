@@ -52,7 +52,7 @@
             <td>
                 @if (!string.IsNullOrEmpty(item.ImageFullPath))
                 {
-                    <img src="@Url.Content(item.ImageFullPath)" style="width:30px;height:30px;" />
+                    <img src="@Url.Content(item.ImageFullPath)" onerror="this.onerror = null; this.src='/Content/Images/no_image.png'" style="width:30px;height:30px;" />
                 }
                 else
                 {
