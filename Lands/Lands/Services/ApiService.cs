@@ -313,7 +313,7 @@ namespace Lands.Services
             }
         }
 
-        public async Task<User> GetUserByEmail(string urlBase, string servicePrefix, string controller, string email)
+        public async Task<User> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, string email)
         {
             try
             {
@@ -323,6 +323,7 @@ namespace Lands.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
 
                 var url = string.Format("{0}{1}", servicePrefix, controller);
@@ -344,7 +345,7 @@ namespace Lands.Services
             }
         }
 
-        public async Task<Response> Put<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model)
+        public async Task<Response> Put<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model, int id)
         {
             try
             {
@@ -359,7 +360,7 @@ namespace Lands.Services
                     "{0}{1}/{2}",
                     servicePrefix,
                     controller,
-                    model.GetHashCode());
+                    id);
                 var response = await client.PutAsync(url, content);
                 var result = await response.Content.ReadAsStringAsync();
 

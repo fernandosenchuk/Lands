@@ -7,16 +7,28 @@ using System.Collections.ObjectModel;
 
 namespace Lands.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
+        #region Attributes
+
+        private UserLocal userLocal;
+
+        #endregion
+
         #region Properties
 
         public List<Land> LandsList { get; set; }
         public string Token { get; set; }
         public string TokenType { get; set; }
-        public UserLocal UserLocal { get; set; }
+
+        public UserLocal UserLocal
+        {
+            get { return userLocal; }
+            set { SetValue(ref userLocal, value); }
+        }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
         #endregion
 
         #region ViewModels

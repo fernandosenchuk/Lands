@@ -15,6 +15,7 @@
         #region Services
 
         private ApiService apiService;
+        private DataService dataService;
 
         #endregion
 
@@ -78,6 +79,7 @@
         public MyProfileViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             this.User = MainViewModel.GetInstance().UserLocal;
 
@@ -148,7 +150,7 @@
                     Languages.Accept);
                 return;
             }
-            
+
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -169,6 +171,10 @@
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
             }
+            else
+            {
+                //????
+            }
 
             var user = new User
             {
@@ -178,6 +184,7 @@
                 Telephone = this.Telephone,
                 ImageArray = imageArray,
                 ImagePath = this.User.ImagePath,
+                UserId = this.User.UserId,
                 UserTypeId = 1
             };
 
@@ -188,7 +195,8 @@
                 "/Users",
                 MainViewModel.GetInstance().TokenType,
                 MainViewModel.GetInstance().Token,
-                user);
+                user,
+                user.UserId);
 
             if (!response.IsSuccess)
             {
@@ -204,10 +212,19 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            await Application.Current.MainPage.DisplayAlert(
-                Languages.ConfirmLabel,
-                Languages.UserRegisteredMessage,
-                Languages.Accept);
+            var userApi = await apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                MainViewModel.GetInstance().TokenType,
+                MainViewModel.GetInstance().Token,
+                this.Email);
+
+            var userLocal = Converter.ToUserLocal(userApi);
+
+            MainViewModel.GetInstance().UserLocal = userLocal;
+
+            this.dataService.Update(userLocal);
 
             await App.Navigator.PopAsync();
         }
